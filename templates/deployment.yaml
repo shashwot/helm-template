@@ -27,6 +27,10 @@ spec:
       serviceAccountName: {{ include "helm-template.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: "init-busybox"
+          image: "{{ .Values.busybox.image }}:{{ .Values.busybox.tag }}"
+          command: ['sh', '-c', 'until nslookup {{ include "helm-template.fullname" . }}; do echo waiting for {{ include "helm-template.fullname" . }}; sleep 2; done;']
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
