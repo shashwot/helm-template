@@ -1,0 +1,12 @@
+{{- if .Values.configmap.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "helm-template.fullname" . }}
+  labels:
+    {{- include "helm-template.labels" . | nindent 4 }}
+data: 
+  {{- range $name, $config := .Values.configmap }}
+  {{ $name }}: {{ $config | quote }}
+  {{- end }}
+{{- end }}
