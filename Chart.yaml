@@ -4,7 +4,7 @@ name: helm-template
 
 maintainers:
     - name: Shashwot Risal
-      url: http://shashwotrisal.com.np
+      url: https://shashwotrisal.com.np
 
 description: A Helm chart for Kubernetes
 
