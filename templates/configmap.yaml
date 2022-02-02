@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "helm-template.labels" . | nindent 4 }}
 data: 
-  {{- range $name, $config := .Values.configmap }}
+  {{- range $name, $config := .Values.configmap.values }}
   {{ $name }}: {{ $config | quote }}
   {{- end }}
 {{- end }}
